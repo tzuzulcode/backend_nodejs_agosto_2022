@@ -1,34 +1,25 @@
 const express = require("express")
 const { port } = require("./config")
+const { connection } = require("./config/db")
+
+const foodRouter = require("./routes/food")
+const food_simple = require("./routes/food_simple")
 
 const app = express()
 
+connection()
+
+app.use("/api/food",foodRouter)
+
+food_simple(app)
+
 app.get("/",function(req,res){
-    console.log(req)
 
-    return res.end("GET")
-})
-
-app.get("/:id",function(req,res){
-
-    return res.end("GET:"+req.params.id)
-})
-
-app.post("/",function(req,res){
-
-    return res.end("POST")
-})
-
-app.put("/:id",function(req,res){
-
-    return res.end("PUT:"+req.params.id)
-})
-
-app.delete("/:id",function(req,res){
-
-    return res.end("DELETE:"+req.params.id)
+    return res.end("Hola, bienvenido")
 })
 
 app.listen(port,()=>{
     console.log("Listening on: http://localhost:"+port)
 })
+
+//Actividad: Investigar acerca del MVC y Arquitectura Orientada a Servicios. Investigar CRUD en Mongoose
