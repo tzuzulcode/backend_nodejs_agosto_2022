@@ -7,9 +7,17 @@ const food_simple = require("./routes/food_simple")
 
 const app = express()
 
+//MIDDLEWARE 
+app.use(express.json())
+
+
+//DATABASE
 connection()
 
+
+//RUTA
 app.use("/api/food",foodRouter)
+
 
 food_simple(app)
 
