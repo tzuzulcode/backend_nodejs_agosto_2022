@@ -11,6 +11,8 @@ function food(app){
         const food = await foodServ.getAll()
         return res.status(food.success?200:400).json(food)
     })
+
+    // Actividad: Completar endpoints: getById, create, updateById, deleteById
 }
 
 module.exports = food
