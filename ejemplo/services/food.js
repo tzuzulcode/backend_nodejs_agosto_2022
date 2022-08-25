@@ -16,10 +16,15 @@ class FoodService{
             }
         }
     }
-    async getById(){
+    async getById(id){
         try {
-            const { id } = req.params;
-            const food = await Food.findById(id) // Consulta para obtener todos los items
+            if(!id){
+                return {
+                    success:false,
+                    messsage:"Not found"
+                }
+            }
+            const food = await Food.findById(id)
             return {
                 success:true,
                 data:food
@@ -32,24 +37,30 @@ class FoodService{
             }
         }
     }
-    async createFood(){
+    async create(data){
         try {
-            const { name, price } = req.body;
+            const { name, price } = data;
             if(!name && !price) {
                 return {
                     success:false,
                     message:"No hay suficientes datos"
                 }
             }
-            const food = new Foot({
+            // const food = new Food({
+            //     name,
+            //     price
+            // });
+            // await food.save();
+
+            const food = await Food.create({
                 name,
                 price
-            });
-            await food.save();
+            })
 
             return {
                 success:true,
-                message:"Producto creado con exito"
+                message:"Producto creado con exito",
+                data: food
             }
         } catch (error) {
             console.log(error)
@@ -59,24 +70,17 @@ class FoodService{
             }
         }
     }
-    async updateFood(){
+    async update(id,data){
         try {
-            const { id } = req.params;
-            const { name, price } = req.body;
+            // const { name, price } = data;
 
-            if(!name && !price) {
-                return {
-                    success:false,
-                    message:"No hay suficientes datos"
-                }
-            }
-
-            const updates = { ...req.body };
             const options = { new: true };
-            await Food.findByIdAndUpdate(id, updates, options);
+
+            const food = await Food.findByIdAndUpdate(id, data, options);
             return {
                 success:true,
-                message: "Producto actualizado con exito"
+                message: "Producto actualizado con exito",
+                data:food
             }
         } catch (error) {
             console.log(error)
@@ -86,13 +90,13 @@ class FoodService{
             }
         }
     }
-    async deleteFood(){
+    async delete(id){
         try {
-            const { id } = req.params;
-            await Food.findByIdAndDelete(id);
+            const food = await Food.findByIdAndDelete(id);
             return {
                 success:true,
-                message: "Producto eliminado con exito"
+                message: "Producto eliminado con exito",
+                data:food
             }
         } catch (error) {
             console.log(error)
