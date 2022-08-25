@@ -37,7 +37,7 @@ function food(app) {
     return res.status(food.success ? 200 : 400).json(data);
   });
   
-  // Actividad: Completar endpoints: getById, create, updateById, deleteById
+  // Actividad: Implementar linter: eslint, prettier, etc...
 }
 
 module.exports = food;
