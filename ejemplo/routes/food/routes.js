@@ -1,9 +1,9 @@
-const getAllFoodRoute = (req,res)=>{
+const getAllFoodRoute = (req, res) => {
     return res.json({
-        "hola":"mundo"
+        hola: 'mundo'
     })
 }
 
-module.exports ={
+module.exports = {
     getAllFoodRoute
 }
