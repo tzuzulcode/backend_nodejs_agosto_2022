@@ -1,4 +1,4 @@
-const User = require("../models/User")
+const User = require('../models/User')
 
 class Users{
     async getOneByEmail(email){
@@ -15,6 +15,21 @@ class Users{
         } catch (error) {
             return {
                 success:false,
+                message: error.message
+            }
+        }
+    }
+
+    async create(data){
+        try {
+            const user = await User.create(data)
+            return {
+                success: true,
+                data: user
+            }
+        } catch (error) {
+            return{
+                success: false,
                 message: error.message
             }
         }
