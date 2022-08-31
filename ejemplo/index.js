@@ -26,5 +26,3 @@ app.listen(port, () => {
     // eslint-disable-next-line no-console
     console.log('Listening on: http://localhost:' + port)
 })
-
-//Actividad: Investigar acerca del MVC y Arquitectura Orientada a Servicios. Investigar CRUD en Mongoose
