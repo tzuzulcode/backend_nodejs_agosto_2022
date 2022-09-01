@@ -1,9 +1,14 @@
 require('dotenv').config()
 
 const config = {
-    port: process.env.PORT,
-    dbUri: process.env.MONGODB_URI,
-    jwtSecret: process.env.JWT_SECRET
+    dbUri     : process.env.MONGODB_URI,
+    enviroment: process.env.ENVIROMENT,
+    jwtSecret : process.env.JWT_SECRET,
+    port      : process.env.PORT
+}
+
+const logginEnum :{
+    DEV: 'dev'
 }
 
 module.exports = config

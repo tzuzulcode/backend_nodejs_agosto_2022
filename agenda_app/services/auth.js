@@ -13,8 +13,8 @@ class Auth{
         const {email, password} = data
         if(!email || !password){
             return {
-                success:false,
-                message:'Incorrect credentials'
+                message: 'Incorrect credentials',
+                success: false
             }
         }
 
@@ -25,8 +25,8 @@ class Auth{
         }
 
         return {
-            success:false,
-            message:'Incorrect credentials'
+            message: 'Incorrect credentials',
+            success: false
         }
 
     }
@@ -35,14 +35,14 @@ class Auth{
         payload.password = await this.#hash(payload.password, 10)
 
         if(!payload.password || !payload.email)
-            return {succes: false, message:'Error interno, reintentar'}
+            return {message: 'Error interno, reintentar', succes: false}
 
         const {data: user, success, message} = await this.#users.create(payload)
 
         if(!success)
             return {
-                success,
-                message
+                message,
+                success
             }
         
         return {...this.#generateAuthData(user), message }
@@ -51,9 +51,9 @@ class Auth{
     #generateAuthData(userData){
         const user = {email: userData.email, name: userData.name}
             return {
-                success:true,
-                data:user,
-                token: this.#createToken(user)
+                data   : user,
+                success: true,
+                token  : this.#createToken(user)
             }
     }
 
@@ -67,7 +67,7 @@ class Auth{
 
     #createToken(data){
         return jwt.sign(data,jwtSecret,{
-            expiresIn:'7d'
+            expiresIn: '7d'
         })
     }
 

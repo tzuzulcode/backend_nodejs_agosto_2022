@@ -3,13 +3,12 @@ const { mongoose } = require('../config/db')
 const genderEnum = ['Masculino', 'Femenino', 'Otros']
 
 const userSchema = new mongoose.Schema({
-    name: String,
-    email: {type:String, unique: true},
-    password: String,
-    userId: { type:String, unique: true},
     birthDate: Date,
-    phone: Number,
-    gender:{type: String, enum: genderEnum}
+    email    : {type: String, unique: true},
+    gender   : {enum: genderEnum, type: String},
+    name     : String,
+    password : String,
+    phone    : Number
 })
 
 

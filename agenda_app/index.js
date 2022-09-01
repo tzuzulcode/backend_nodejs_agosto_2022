@@ -1,13 +1,19 @@
 const express = require('express')
-const { port } = require('./config')
+const morgan = require('morgan')
+const { port, enviroment } = require('./config')
 const { connection } = require('./config/db')
 const auth = require('./routes/auth')
 
+const logginEnum = {
+    DEV : 'dev',
+    PROD: 'tiny'
+}
 
 const app = express()
 
 //MIDDLEWARE
 app.use(express.json())
+app.use(morgan(logginEnum[enviroment]))
 
 //DATABASE
 connection()

@@ -8,14 +8,14 @@ class Users{
             })
 
             return {
-                success:user?true:false,
-                data:user
+                data   : user,
+                success: user?true:false
             }
 
         } catch (error) {
             return {
-                success:false,
-                message: error.message
+                message: error.message,
+                success: false
             }
         }
     }
@@ -24,13 +24,13 @@ class Users{
         try {
             const user = await User.create(data)
             return {
-                success: true,
-                data: user
+                data   : user,
+                success: true
             }
         } catch (error) {
             return{
-                success: false,
-                message: error.message
+                message: error.message,
+                success: false
             }
         }
     }
