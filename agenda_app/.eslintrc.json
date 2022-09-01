@@ -9,17 +9,9 @@
     "parserOptions": {
         "ecmaVersion": "latest"
     },
-    "plugins": ["sort-keys-fix"],
+    "plugins": [],
     "rules": {
         "no-console": "error",
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "key-spacing":[
-            "warn",
-            {"align": "colon"}
-        ],
-        "sort-keys-fix/sort-keys-fix":"warn"
+        "quotes": ["error", "single"]
     }
 }

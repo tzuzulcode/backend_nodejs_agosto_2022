@@ -5,7 +5,7 @@ const { connection } = require('./config/db')
 const auth = require('./routes/auth')
 
 const logginEnum = {
-    DEV : 'dev',
+    DEV: 'dev',
     PROD: 'tiny'
 }
 

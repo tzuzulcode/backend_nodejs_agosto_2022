@@ -1,10 +1,13 @@
 require('dotenv').config()
 
 const config = {
-    dbUri     : process.env.MONGODB_URI,
-    enviroment: process.env.ENVIROMENT,
-    jwtSecret : process.env.JWT_SECRET,
-    port      : process.env.PORT
+    port: process.env.PORT,
+    dbHost: process.env.DB_HOST,
+    dbUser: process.env.DB_USER,
+    dbPassword: process.env.DB_PASSWORD,
+    dbName: process.env.DB_NAME,
+    dbOptions: process.env.DB_OPTIONS,
+    jwtSecret: process.env.JWT_SECRET
 }
 
 module.exports = config
