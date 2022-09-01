@@ -1,12 +1,16 @@
-// const {mongoose:{Schema,Model}} = require("../config/db")
-
 const { mongoose } = require('../config/db')
 
+const genderEnum = ['Masculino', 'Femenino', 'Otros']
+
 const userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    password: String
+    birthDate: Date,
+    email    : {type: String, unique: true},
+    gender   : {enum: genderEnum, type: String},
+    name     : String,
+    password : String,
+    phone    : Number
 })
+
 
 const User = mongoose.model('User', userSchema)
 
