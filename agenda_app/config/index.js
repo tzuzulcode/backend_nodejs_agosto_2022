@@ -7,8 +7,4 @@ const config = {
     port      : process.env.PORT
 }
 
-const logginEnum :{
-    DEV: 'dev'
-}
-
 module.exports = config
