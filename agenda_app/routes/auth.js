@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const { prod } = require('../config')
 const AuthService = require('../services/auth')
 
 function auth(app) {
@@ -10,7 +11,20 @@ function auth(app) {
     router.post('/login', async ({ body }, res) => {
         const result = await authServ.login(body)
 
-        return res.status(result.success ? 200 : 400).json(result)
+        if(result.success){
+            return res.status(200).cookie("token",result.token,{
+                httpOnly:true,
+                secure:prod,
+                sameSite:"none",
+                // expires: // Reto: Colocar fecha de expiración de 7 dias
+            }).json({
+                success:result.success,
+                data:result.data
+            })
+        }
+
+        return res.status(400).json(result)
+
     })
 
     router.post('/signup', async ({ body }, res) => {

@@ -25,12 +25,12 @@ class Auth {
         } = await this.#users.getOneByEmail(email)
 
         if (success && (await this.#compare(password, user.password))) {
-            return { ...this.#generateAuthData, message }
+            return { ...this.#generateAuthData(user), message }
         }
 
         return {
             message: 'Incorrect credentials',
-            success: false
+            success: false,
         }
     }
 
@@ -46,17 +46,18 @@ class Auth {
             message
         } = await this.#users.create(payload)
 
-        if (!success)
+        if (!success){
             return {
                 message,
                 success
             }
+        }
 
         return { ...this.#generateAuthData(user), message }
     }
 
     #generateAuthData(userData) {
-        const user = { email: userData.email, name: userData.name }
+        const user = { email: userData.email, name: userData.name, id:userData.id }
         return {
             data: user,
             success: true,
