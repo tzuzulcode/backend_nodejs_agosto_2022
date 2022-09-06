@@ -4,6 +4,8 @@ const { connection } = require('./config/db')
 
 const foodRouter = require('./routes/food')
 const food_simple = require('./routes/food_simple')
+const users = require('./routes/users')
+const auth = require('./routes/auth')
 
 const app = express()
 
@@ -17,6 +19,8 @@ connection()
 app.use('/api/food', foodRouter)
 
 food_simple(app)
+users(app)
+auth(app)
 
 app.get('/', function (req, res) {
     return res.end('Hola, bienvenido')
