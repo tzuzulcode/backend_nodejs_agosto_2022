@@ -1,12 +1,16 @@
-const mongoose = require('mongoose')
-const { dbUser, dbPassword, dbHost, dbName, dbOptions } = require('.')
+import mongoose from 'mongoose'
+import config from './index.js'
 
-const connection = async () => {
-    const conn = await mongoose.connect(
-        `mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbName}${dbOptions}`
-    )
-    // eslint-disable-next-line no-console
-    console.log('Mongo DB connected:', conn.connection.host)
+const {
+	dbUser, dbPassword, dbHost, dbName, dbOptions
+} = config
+
+export const connection = async () => {
+	const conn = await mongoose.connect(
+		`mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbName}${dbOptions}`
+	)
+	// eslint-disable-next-line no-console
+	console.log('Mongo DB connected:', conn.connection.host)
 }
 
-module.exports = { connection, mongoose }
+export default mongoose
