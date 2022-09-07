@@ -17,6 +17,7 @@ function auth(app) {
                 secure:prod,
                 sameSite:"none",
                 // expires: // Reto: Colocar fecha de expiración de 7 dias
+                expires:new Date(new Date().setDate(new Date().getDate() + 7))
             }).json({
                 success:result.success,
                 data:result.data
